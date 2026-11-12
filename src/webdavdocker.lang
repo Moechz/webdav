@@ -1,0 +1,195 @@
+# ===========================================================================
+# Multilingual file for the TOS 7 Docker application "webdavdocker".
+# File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
+# The App Center picks the text matching the user's device language;
+# untranslated nodes fall back to English, which the official guide allows.
+# Fields: name (app title), auth (upstream author), descript (up to 512
+# chars), release_note, important (up to 512 chars).
+# Translations come from tosapp.json "translations"; run
+#   tosdocker lang <app>          to re-render this file
+#   tosdocker translate <app>     to see what still needs translating
+# ===========================================================================
+[en-us]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[zh-cn]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "习惯打卡与连续天数统计，界面简洁。"
+release_note = "1. First release."
+important    = "首次使用请打开网页完成初始化。数据保存在 DockerAppData/beaverhabitsdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+
+[zh-hk]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "习惯打卡与连续天数统计，界面简洁。"
+release_note = "1. First release."
+important    = "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/beaverhabitsdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+
+[fr-fr]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[de-de]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[it-it]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[es-es]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[hu-hu]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[ja-jp]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[ko-kr]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[pl-pl]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[ru-ru]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[tr-tr]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[pt-pt]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[ar-sa]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[cs-cz]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[he-il]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[id-id]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[nb-no]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[nl-nl]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[sv-se]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[th-th]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+
+[vi-vn]
+name         = "WebDAV Server"
+auth         = "ugeek"
+version      = "@@VERSION@@"
+descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
+release_note = "1. First release."
+important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+

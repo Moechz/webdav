@@ -73,7 +73,7 @@
   "github_repo": "webdav",
   "upstream_version": "1.0.0",
   "release_tag_prefix": "v",
-  "version": "1.0.0-1",
+  "version": "1.0.0-2",
   "help": "https://github.com/Moechz/webdav/issues",
   "official": "https://github.com/ugeek/docker-webdav",
   "license": "MIT",

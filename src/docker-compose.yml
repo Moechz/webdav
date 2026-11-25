@@ -1,22 +1,25 @@
 # ===========================================================================
 # WebDAV Server for TerraMaster TOS 7 (Docker application)
 # ===========================================================================
-# Upstream image : ugeek/webdav:amd64 (Docker Hub, used unmodified)
-#                  -> https://github.com/ugeek/docker-webdav
+# Upstream image : rclone/rclone:1.76.0 (Docker Hub, used unmodified)
+#                  -> https://github.com/rclone/rclone
+#                  -> https://rclone.org/webdav/
+#                  Digest is the multi-architecture OCI index, so the same
+#                  package works on x86_64 and aarch64.
 #
-# Ports   : host 8112 -> container 8080. The host port is in the
-#           TOS-recommended 8000-19999 range and is not one of the reserved
-#           ports (22/80/443/445/3306/5050/5432/6379/8181/8443).
+# Ports   : host 8112 -> container 8080.  The host port is unchanged from the
+#           previous release and is not one of the reserved ports
+#           (22/80/443/445/3306/5050/5432/6379/8181/8443).
 # Volumes : all persistent data lives below
-#           /Volume1/DockerAppData/webdavdocker/. The /Volume* wildcard is
+#           /Volume1/DockerAppData/webdavdocker/.  The /Volume* wildcard is
 #           deliberately NOT used: the platform does not expand it.
-# TOS rules honoured: Docker Hub image with a fixed tag (never ':latest'),
-#           container_name == application id, restart: unless-stopped,
-#           non-root user, no privileged mode, no network_mode: host, no
-#           cap_add, explicit TZ, a healthcheck on the only service, and
-#           x-app-meta as the last block.
-# Wrapper : the upstream image runs as root; the entrypoint below replaces
-#           it so the service can run as an unprivileged user.
+# TOS rules honoured: Docker Hub image with a fixed tag and digest (never
+#           ':latest'), container_name == application id, restart:
+#           unless-stopped, non-root user, no privileged mode, no
+#           network_mode: host, no cap_add, explicit TZ, a healthcheck on the
+#           only service, and x-app-meta as the last block.
+# Wrapper : the image entrypoint is replaced so rclone runs as uid 1000 after
+#           creating the per-install password file.
 # Escaping: docker compose interpolates ${VAR}/$VAR in compose files, so any
 #           '$' meant for the shell is written '$$'.
 #
@@ -28,7 +31,7 @@
 
 services:
   webdavdocker:
-    image: ugeek/webdav:amd64
+    image: rclone/rclone:1.76.0@sha256:7cbeec24a44f206067597c0368be4de90ae19a64d5113c7d1938bd737a81e466
     container_name: webdavdocker
     restart: unless-stopped
     user: "1000:1000"
@@ -43,11 +46,13 @@ services:
     volumes:
       - /Volume1/DockerAppData/webdavdocker/media:/media
     healthcheck:
-      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080'"]
+      test: ["CMD-SHELL", "wget -q -S -O /dev/null http://127.0.0.1:8080/ 2>&1 | grep -q '401 Unauthorized'"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 30s
+      start_period: 20s
+    security_opt:
+      - no-new-privileges:true
 
 # TOS App Center web metadata (must be the last block of the file):
 # web.port is the published host port above, protocol is http.

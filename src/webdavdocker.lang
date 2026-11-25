@@ -1,195 +1,195 @@
 # ===========================================================================
 # Multilingual file for the TOS 7 Docker application "webdavdocker".
 # File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
-# The App Center picks the text matching the user's device language;
+# The App Center picks the text matching the user's device language,
 # untranslated nodes fall back to English, which the official guide allows.
 # Fields: name (app title), auth (upstream author), descript (up to 512
 # chars), release_note, important (up to 512 chars).
-# Translations come from tosapp.json "translations"; run
+# Translations come from tosapp.json "translations", run
 #   tosdocker lang <app>          to re-render this file
 #   tosdocker translate <app>     to see what still needs translating
 # ===========================================================================
 [en-us]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [zh-cn]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "习惯打卡与连续天数统计，界面简洁。"
-release_note = "1. First release."
-important    = "首次使用请打开网页完成初始化。数据保存在 DockerAppData/beaverhabitsdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+descript     = "WebDAV Server 把 NAS 上的一个目录变成 WebDAV 共享，Windows、macOS、Linux 和手机客户端都能读写。使用 HTTP Basic 认证，只有一个账号 tos，密码随机生成并保存在数据目录；支持 PROPFIND、PUT、GET、MKCOL、COPY、MOVE、DELETE 等标准方法。容器以 uid 1000 运行，端口 8112，没有网页管理界面，也不内置 TLS。文件保存在 /Volume1/DockerAppData/webdavdocker/media。"
+release_note = "1.76.0-1：按上轮审核意见整改。C3：新增 PRIVACY.md 并在帮助链接中指向它。C9：重写所有语言描述，使其与实际交付一致（单一账号、仅 HTTP、无网页界面）。T1：上游 ugeek/webdav 自 2022 年后未更新，且基于已停止维护的 Debian 10，因此改用当前多架构版本 rclone 1.76.0，不再使用旧镜像。新增 aarch64 套件。端口 8112 与数据目录不变。"
+important    = "打开 http://<NAS-IP>:8112/，用户名 tos，密码见 /Volume1/DockerAppData/webdavdocker/media/.webdav-password。该目录就是 WebDAV 共享根目录，重启和升级不会丢失文件。容器以 uid 1000 运行。本包只提供 HTTP，不内置 TLS；暴露到公网前请配置带 TLS 的反向代理。运行时不主动外呼。需要 DockerEngine。隐私政策见帮助链接。"
 
 [zh-hk]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "习惯打卡与连续天数统计，界面简洁。"
-release_note = "1. First release."
-important    = "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/beaverhabitsdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+descript     = "WebDAV Server 把 NAS 上的一個目錄變成 WebDAV 共享，Windows、macOS、Linux 和手機客戶端都能讀寫。使用 HTTP Basic 認證，只有一個帳號 tos，密碼隨機產生並保存在資料目錄；支援 PROPFIND、PUT、GET、MKCOL、COPY、MOVE、DELETE 等標準方法。容器以 uid 1000 執行，連接埠 8112，沒有網頁管理介面，也不內建 TLS。檔案保存在 /Volume1/DockerAppData/webdavdocker/media。"
+release_note = "1.76.0-1：依上輪審核意見整改。C3：新增 PRIVACY.md 並在說明連結中指向它。C9：重寫所有語言描述，使其與實際交付一致（單一帳號、僅 HTTP、無網頁介面）。T1：上游 ugeek/webdav 自 2022 年後未更新，且基於已停止維護的 Debian 10，因此改用目前多架構版本 rclone 1.76.0，不再使用舊鏡像。新增 aarch64 套件。連接埠 8112 與資料目錄不變。"
+important    = "開啟 http://<NAS-IP>:8112/，使用者名稱 tos，密碼見 /Volume1/DockerAppData/webdavdocker/media/.webdav-password。該目錄就是 WebDAV 共享根目錄，重新啟動和升級不會遺失檔案。容器以 uid 1000 執行。本包只提供 HTTP，不內建 TLS；公開到網際網路前請設定帶 TLS 的反向代理。執行時不主動外呼。需要 DockerEngine。隱私政策見說明連結。"
 
 [fr-fr]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [de-de]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [it-it]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [es-es]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [hu-hu]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [ja-jp]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [ko-kr]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [pl-pl]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [ru-ru]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [tr-tr]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [pt-pt]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [ar-sa]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [cs-cz]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [he-il]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [id-id]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [nb-no]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [nl-nl]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [sv-se]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [th-th]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 
 [vi-vn]
 name         = "WebDAV Server"
-auth         = "ugeek"
+auth         = "rclone"
 version      = "@@VERSION@@"
-descript     = "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64."
-release_note = "1. First release."
-important    = "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user 'tos' and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN."
+descript     = "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media."
+release_note = "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged."
+important    = "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help."
 

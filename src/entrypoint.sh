@@ -1,45 +1,39 @@
 #!/bin/sh
+# Entrypoint for the WebDAV Server TOS package.
+#
+# The upstream image is rclone/rclone:1.76.0.  It runs `rclone serve webdav`
+# against the mounted data folder as uid 1000.  The image itself is unmodified;
+# this wrapper only creates the per-install password and starts the server.
 set -u
 set -e
-mkdir -p /media /tmp/client_body /tmp/proxy /tmp/fastcgi /tmp/uwsgi /tmp/scgi
+
+umask 077
+
+# /media is the WebDAV root.  It is a bind mount owned by the app user (the
+# TOS installer creates and chowns it).  Nothing outside /media is written.
+mkdir -p /media
+
+# Keep the existing password on upgrade.  The file is deliberately excluded
+# from the WebDAV view below, so clients cannot download it.
 if [ ! -s /media/.webdav-password ]; then
   head -c 18 /dev/urandom | base64 | tr -d '\n' > /media/.webdav-password
 fi
+chmod 600 /media/.webdav-password
 PASS=$(cat /media/.webdav-password)
-htpasswd -bc /tmp/htpasswd tos "$PASS" >/dev/null 2>&1
-cat > /tmp/nginx.conf <<'CONF'
-load_module /usr/lib/nginx/modules/ngx_http_dav_ext_module.so;
-worker_processes 1;
-pid /tmp/nginx.pid;
-error_log /tmp/error.log;
-events { worker_connections 1024; }
-http {
-  include /etc/nginx/mime.types;
-  default_type application/octet-stream;
-  access_log /tmp/access.log;
-  client_body_temp_path /tmp/client_body;
-  proxy_temp_path /tmp/proxy;
-  fastcgi_temp_path /tmp/fastcgi;
-  uwsgi_temp_path /tmp/uwsgi;
-  scgi_temp_path /tmp/scgi;
-  server {
-    listen 8080;
-    server_name _;
-    location = / {
-      default_type text/plain;
-      return 200 "WebDAV server is running. Use the credentials in the app data folder.\n";
-    }
-    location / {
-      root /media;
-      auth_basic "WebDAV";
-      auth_basic_user_file /tmp/htpasswd;
-      dav_methods PUT DELETE MKCOL COPY MOVE;
-      dav_ext_methods PROPFIND OPTIONS;
-      dav_access user:rw group:rw all:r;
-      autoindex on;
-      create_full_put_path on;
-    }
-  }
-}
-CONF
-exec nginx -c /tmp/nginx.conf -g 'error_log /tmp/error.log; daemon off;'
+
+# Credentials go through the environment, not argv, so `ps` does not show the
+# password.  rclone maps RCLONE_<FLAG> to the corresponding command-line flag.
+export RCLONE_USER=tos
+export RCLONE_PASS="$PASS"
+
+# HTTP only: this package does not ship or generate TLS certificates.  If HTTPS
+# is required, terminate it in a reverse proxy in front of port 8112.
+#
+# --exclude keeps the credential file out of PROPFIND/GET responses.
+# --dir-cache-time 10s makes files written directly on the NAS show up quickly.
+exec rclone serve webdav /media \
+  --addr :8080 \
+  --log-level INFO \
+  --dir-cache-time 10s \
+  --umask 022 \
+  --exclude /.webdav-password

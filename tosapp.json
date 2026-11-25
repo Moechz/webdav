@@ -1,7 +1,7 @@
 {
   "app_id": "webdavdocker",
   "title": "WebDAV Server",
-  "image": "ugeek/webdav:amd64",
+  "image": "rclone/rclone:1.76.0@sha256:7cbeec24a44f206067597c0368be4de90ae19a64d5113c7d1938bd737a81e466",
   "repo_name": "webdav",
   "mode": "wrapper",
   "container_port": 8080,
@@ -17,80 +17,45 @@
   "env": {
     "TZ": "Asia/Shanghai"
   },
-  "auth": "ugeek",
-  "upstream_url": "https://github.com/ugeek/docker-webdav",
+  "auth": "rclone",
+  "upstream_url": "https://github.com/rclone/rclone",
   "upstream_license": "MIT",
-  "descript": "A ready-to-use WebDAV server with read-write access, PROPFIND support and per-app credentials. This package runs the Docker Hub image as a non-root container, rebuilds nginx on port 8080 and stores everything under the application data folder. Only the x86_64 package is built because the upstream image only publishes amd64.",
-  "release_note": "1. First release.",
-  "important": "The root page shows the server status. Connect WebDAV clients to http://<NAS-IP>:8112/ with user \"tos\" and the password in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. Files live in that folder and survive updates. The container runs as uid 1000. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Plain HTTP on the LAN.",
-  "probe": {
-    "user_in_image": "nobody",
-    "entrypoint": null,
-    "cmd": [
-      "sh",
-      "start.sh",
-      "prd"
-    ],
-    "exposed_ports": [
-      8080
-    ],
-    "declared_volumes": [],
-    "image_healthcheck": [
-      "CMD-SHELL",
-      "python healthcheck.py"
-    ],
-    "digest": "daya0576/beaverhabits@sha256:6cd7e464207369785c88cfd59f99c6cc44ec57f3a8d90c3439908da42271d69f",
-    "architecture": "x86_64",
-    "platforms": [],
-    "http_client_in_image": "",
-    "trial_run": {
-      "ok": false,
-      "http_code": "",
-      "state": "exited",
-      "paths": [],
-      "host_port": 18000,
-      "log_tail": "21, in connect\n    await_only(connection),\n    ~~~~~~~~~~^^^^^^^^^^^^\n  File \"/opt/pysetup/.venv/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py\", line 132, in await_only\n    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"/opt/pysetup/.venv/lib/python3.14/site-packages/sqlalchemy/util/_concurrency_py3k.py\", line 196, in greenlet_spawn\n    value = await result\n            ^^^^^^^^^^^^\n  File \"/opt/pysetup/.venv/lib/python3.14/site-packages/aiosqlite/core.py\", line 168, in _connect\n    self._connection = await future\n                       ^^^^^^^^^^^^\n  File \"/opt/pysetup/.venv/lib/python3.14/site-packages/aiosqlite/core.py\", line 63, in _connection_worker_thread\n    result = function()\n  File \"/opt/pysetup/.venv/lib/python3.14/site-packages/aiosqlite/core.py\", line 466, in connector\n    return sqlite3.connect(loc, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nsqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file\n(Background on this error at: https://sqlalche.me/e/20/e3q8)\n\n[2026-11-10 04:59:36 +0000] [11] [ERROR] Application startup failed. Exiting.\n[2026-11-10 04:59:36 +0000] [11] [INFO] Worker exiting (pid: 11)\n[2026-11-10 04:59:36 +0000] [9] [ERROR] Worker (pid:11) exited with code 3.\n[2026-11-10 04:59:36 +0000] [9] [ERROR] Shutting down: Master\n[2026-11-10 04:59:36 +0000] [9] [ERROR] Reason: Worker failed to boot.",
-      "files_in_mounts": ""
-    },
-    "docker_hub": {},
-    "github": {
-      "owner": "daya0576",
-      "repo": "beaverhabits",
-      "description": "A self-hosted habit tracking app without \"Goals\"",
-      "license": "BSD-3-Clause",
-      "homepage": "https://beaverhabits.com/demo"
-    }
-  },
+  "descript": "WebDAV Server shares one folder on your NAS with Windows, macOS, Linux and mobile WebDAV clients. It offers read-write access over HTTP Basic authentication with a single account (user tos) and a random password kept in the data folder, and supports the standard WebDAV methods PROPFIND, PUT, GET, MKCOL, COPY, MOVE and DELETE. The container runs as uid 1000 on port 8112. There is no web admin UI and no built-in TLS. Files stay in /Volume1/DockerAppData/webdavdocker/media.",
+  "release_note": "1.76.0-1: remediated the listing review. C3: added PRIVACY.md and linked it from Help. C9: rewrote every language description to match the delivered service (single account, HTTP only, no web UI). T1: upstream ugeek/webdav has not been updated since 2022 and is built on end-of-life Debian 10, so the runtime was replaced with rclone 1.76.0, the current multi-arch release, and the old image is no longer used. Added the aarch64 package. Port 8112 and the data folder are unchanged.",
+  "important": "Open http://<NAS-IP>:8112/ and sign in as user 'tos' with the password stored in /Volume1/DockerAppData/webdavdocker/media/.webdav-password. That folder is the shared WebDAV root and files survive restarts and updates. Runs as uid 1000. Plain HTTP only, with no TLS in this package, so use a TLS reverse proxy before exposing it to the internet. No outbound connections at runtime. Needs DockerEngine. Privacy policy: see Help.",
   "healthcheck": [
     "CMD-SHELL",
-    "bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080'"
+    "wget -q -S -O /dev/null http://127.0.0.1:8080/ 2>&1 | grep -q '401 Unauthorized'"
   ],
-  "entrypoint_file": "specs/webdav-entrypoint.sh",
+  "entrypoint_file": "src/entrypoint.sh",
   "platform": "x86_64",
   "user": "1000:1000",
   "publisher": "Moechz",
   "compose_project": "webdavdocker",
   "github_repo": "webdav",
-  "upstream_version": "1.0.0",
+  "upstream_version": "1.76.0",
   "release_tag_prefix": "v",
-  "version": "1.0.0-2",
-  "help": "https://github.com/Moechz/webdav/issues",
-  "official": "https://github.com/ugeek/docker-webdav",
+  "version": "1.76.0-1",
+  "help": "https://github.com/Moechz/webdav/blob/main/PRIVACY.md",
+  "official": "https://github.com/rclone/rclone",
   "license": "MIT",
   "docker_socket": false,
   "group_add": [],
-  "platforms": [
-    "x86_64"
-  ],
   "translations": {
     "zh-cn": {
-      "descript": "习惯打卡与连续天数统计，界面简洁。",
-      "important": "首次使用请打开网页完成初始化。数据保存在 DockerAppData/beaverhabitsdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+      "descript": "WebDAV Server 把 NAS 上的一个目录变成 WebDAV 共享，Windows、macOS、Linux 和手机客户端都能读写。使用 HTTP Basic 认证，只有一个账号 tos，密码随机生成并保存在数据目录；支持 PROPFIND、PUT、GET、MKCOL、COPY、MOVE、DELETE 等标准方法。容器以 uid 1000 运行，端口 8112，没有网页管理界面，也不内置 TLS。文件保存在 /Volume1/DockerAppData/webdavdocker/media。",
+      "important": "打开 http://<NAS-IP>:8112/，用户名 tos，密码见 /Volume1/DockerAppData/webdavdocker/media/.webdav-password。该目录就是 WebDAV 共享根目录，重启和升级不会丢失文件。容器以 uid 1000 运行。本包只提供 HTTP，不内置 TLS；暴露到公网前请配置带 TLS 的反向代理。运行时不主动外呼。需要 DockerEngine。隐私政策见帮助链接。",
+      "release_note": "1.76.0-1：按上轮审核意见整改。C3：新增 PRIVACY.md 并在帮助链接中指向它。C9：重写所有语言描述，使其与实际交付一致（单一账号、仅 HTTP、无网页界面）。T1：上游 ugeek/webdav 自 2022 年后未更新，且基于已停止维护的 Debian 10，因此改用当前多架构版本 rclone 1.76.0，不再使用旧镜像。新增 aarch64 套件。端口 8112 与数据目录不变。"
     },
     "zh-hk": {
-      "descript": "习惯打卡与连续天数统计，界面简洁。",
-      "important": "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/beaverhabitsdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+      "descript": "WebDAV Server 把 NAS 上的一個目錄變成 WebDAV 共享，Windows、macOS、Linux 和手機客戶端都能讀寫。使用 HTTP Basic 認證，只有一個帳號 tos，密碼隨機產生並保存在資料目錄；支援 PROPFIND、PUT、GET、MKCOL、COPY、MOVE、DELETE 等標準方法。容器以 uid 1000 執行，連接埠 8112，沒有網頁管理介面，也不內建 TLS。檔案保存在 /Volume1/DockerAppData/webdavdocker/media。",
+      "important": "開啟 http://<NAS-IP>:8112/，使用者名稱 tos，密碼見 /Volume1/DockerAppData/webdavdocker/media/.webdav-password。該目錄就是 WebDAV 共享根目錄，重新啟動和升級不會遺失檔案。容器以 uid 1000 執行。本包只提供 HTTP，不內建 TLS；公開到網際網路前請設定帶 TLS 的反向代理。執行時不主動外呼。需要 DockerEngine。隱私政策見說明連結。",
+      "release_note": "1.76.0-1：依上輪審核意見整改。C3：新增 PRIVACY.md 並在說明連結中指向它。C9：重寫所有語言描述，使其與實際交付一致（單一帳號、僅 HTTP、無網頁介面）。T1：上游 ugeek/webdav 自 2022 年後未更新，且基於已停止維護的 Debian 10，因此改用目前多架構版本 rclone 1.76.0，不再使用舊鏡像。新增 aarch64 套件。連接埠 8112 與資料目錄不變。"
     }
   },
+  "platforms": [
+    "x86_64",
+    "aarch64"
+  ],
   "host_port": 8112
 }
